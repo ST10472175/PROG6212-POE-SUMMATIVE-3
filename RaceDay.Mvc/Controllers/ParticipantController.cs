@@ -153,6 +153,7 @@ namespace RaceDay.Mvc.Controllers
             }
         }
 
+        //validates and saves profile changes, including  an optional prrofile picture.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Profile(ProfileFormViewModel model)
