@@ -2,7 +2,7 @@
 
 RaceDay is a role-based event management web application for running, walking and cycling events. The Part 3 solution adds an ASP.NET Core MVC front end to the existing Part 2 REST API. The MVC application communicates with the API over HTTP and does **not** connect to SQL Server or contain a second copy of the business rules.
 
-## Solution contents
+## Table of contents
 
 ```text
 RaceDay/
