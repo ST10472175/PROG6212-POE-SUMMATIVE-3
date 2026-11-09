@@ -15,3 +15,16 @@
 ## External configuration and evidence dependencies
 
 The source archive cannot contain the user's Azure account credentials, GitHub access, actual repository commit history, or a recorded YouTube video. Configure Azure Storage, push the files to the user's repository, create meaningful commits during development, run the stack, and capture the evidence listed above before submission.
+## Final evidence review
+
+Before submission, verify the following:
+
+- [ ] Every marking-criteria section has supporting screenshots or video evidence.
+- [ ] Authentication and role restrictions have been tested with both account types.
+- [ ] Event creation, editing, deletion and category management have been demonstrated.
+- [ ] Participant enrolment, status changes and result workflows have been demonstrated.
+- [ ] Event banners and participant profile pictures have been uploaded and displayed.
+- [ ] Docker containers have been started successfully and the MVC and API pages opened.
+- [ ] The latest GitHub Actions workflow has completed successfully.
+- [ ] The final demonstration video covers the required application features and deployment setup.
+- [ ] All evidence reflects the final version of the application.
