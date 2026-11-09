@@ -127,6 +127,7 @@ namespace RaceDay.Mvc.Controllers
             }
         }
 
+        //deletes the selected event through API
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditEvent(EventFormViewModel model)
