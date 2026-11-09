@@ -31,3 +31,18 @@ Show the root `Dockerfile` and `docker-compose.yml`. Run `docker compose ps` and
 ## 7. GitHub Actions and conclusion
 
 Open the repository's latest successful GitHub Actions run. Explain that the workflow checks the project structure, restores/builds the solution, runs the API tests and validates Docker Compose. Finish by summarising how the MVC front end, API, Azure Blob Storage and Docker work together.
+## 8. Recording preparation and final checks
+
+Before recording:
+
+- [ ] Start the API and MVC applications and confirm both are accessible.
+- [ ] Confirm the database connection is working.
+- [ ] Check that Azure Blob Storage is configured and image uploads work.
+- [ ] Prepare working Organiser and Participant accounts.
+- [ ] Prepare an event with a past date for the results demonstration.
+- [ ] Confirm Docker Compose starts all required containers.
+- [ ] Confirm the latest GitHub Actions workflow has passed.
+- [ ] Close unrelated applications and notifications.
+- [ ] Ensure the browser text and Visual Studio code are readable in the recording.
+- [ ] Test the recording audio and screen visibility.
+- [ ] Review the recording before uploading it as an unlisted YouTube video.
