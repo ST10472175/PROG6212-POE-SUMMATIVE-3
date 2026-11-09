@@ -15,6 +15,7 @@ namespace RaceDay.Mvc.Controllers
             _api = api;
         }
 
+        //loads organiser dashboard stats, including  event enrolment totals
         public async Task<IActionResult> Index()
         {
             try
