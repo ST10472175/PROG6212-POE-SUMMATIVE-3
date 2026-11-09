@@ -57,6 +57,7 @@ namespace RaceDay.Mvc.Controllers
         [HttpGet]
         public IActionResult CreateEvent() => View("EventForm", new EventFormViewModel());
 
+        //creates a new event and uploads its optional  banner image
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateEvent(EventFormViewModel model)
