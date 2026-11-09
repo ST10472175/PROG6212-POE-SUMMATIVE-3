@@ -82,6 +82,7 @@ namespace RaceDay.Mvc.Controllers
             }
         }
 
+        //submits the participant's enrolment for the selected event category
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Enrol(int eventId, int categoryId)
