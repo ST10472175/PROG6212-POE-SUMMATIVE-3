@@ -18,6 +18,8 @@ namespace RaceDay.Mvc.Controllers
             _api = api;
         }
 
+        //Displays upcoming events and allows participants to filter them
+        //by search term, event type, and starting date.
         [HttpGet]
         public async Task<IActionResult> Index(string search, string eventType, DateTime? fromDate)
         {
