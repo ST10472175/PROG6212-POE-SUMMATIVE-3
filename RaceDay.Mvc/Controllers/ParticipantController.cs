@@ -130,6 +130,7 @@ namespace RaceDay.Mvc.Controllers
             }
         }
 
+        //retrieves the participants current profile information.
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
