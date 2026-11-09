@@ -99,7 +99,7 @@ namespace RaceDay.Mvc.Controllers
                 return RedirectToAction(nameof(Details), new { id = eventId });
             }
         }
-
+        //retrieves and displays the logged in participant's event results. 
         [HttpGet]
         public async Task<IActionResult> MyEvents()
         {
