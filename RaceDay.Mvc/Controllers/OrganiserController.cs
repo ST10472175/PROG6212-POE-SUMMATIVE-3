@@ -258,6 +258,7 @@ namespace RaceDay.Mvc.Controllers
             return RedirectToAction(nameof(Categories), new { eventId });
         }
 
+        //displays the participants enrolled in the selected event.
         [HttpGet]
         public async Task<IActionResult> Enrolments(int eventId)
         {
