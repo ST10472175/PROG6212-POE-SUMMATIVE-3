@@ -1,0 +1,25 @@
+@model List<EventSummaryViewModel>
+@{ ViewData["Title"] = "Organiser dashboard"; }
+<div class="page-heading d-flex flex-wrap justify-content-between align-items-end gap-3">
+    <div><span class="eyebrow">ORGANISER WORKSPACE</span><h1>Your event dashboard</h1><p>Keep your events, participants and race-day results in one place.</p></div>
+    <a class="btn btn-accent" asp-action="CreateEvent">＋ Create event</a>
+</div>
+<div class="row g-3 my-3">
+    <div class="col-sm-4"><div class="metric-card"><span>Total events</span><strong>@Model.Count</strong></div></div>
+    <div class="col-sm-4"><div class="metric-card"><span>Total enrolments</span><strong>@(ViewBag.TotalEnrolments ?? 0)</strong></div></div>
+    <div class="col-sm-4"><div class="metric-card"><span>Upcoming events</span><strong>@(ViewBag.UpcomingEvents ?? 0)</strong></div></div>
+</div>
+<div class="section-heading"><div><h2>Events you manage</h2><p>Enrolment totals and upcoming event dates.</p></div><a asp-action="Events" class="text-link">Manage all events →</a></div>
+@if (Model.Count == 0)
+{
+    <div class="empty-state"><div class="empty-icon">🏁</div><h3>No events yet</h3><p>Create your first RaceDay event to start welcoming participants.</p><a class="btn btn-accent" asp-action="CreateEvent">Create your first event</a></div>
+}
+else
+{
+    <div class="table-responsive content-card"><table class="table align-middle mb-0"><thead><tr><th>Event</th><th>Date</th><th>Type</th><th>Enrolments</th><th></th></tr></thead><tbody>
+    @foreach (var item in Model.OrderBy(x => x.Event.EventDate))
+    {
+        <tr><td class="fw-semibold">@item.Event.EventName</td><td>@item.Event.EventDate.ToString("dd MMM yyyy, HH:mm")</td><td><span class="type-pill">@item.Event.EventType</span></td><td>@item.EnrolmentCount</td><td><a asp-action="Enrolments" asp-route-eventId="@item.Event.EventId" class="text-link">View entries</a></td></tr>
+    }
+    </tbody></table></div>
+}

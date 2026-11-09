@@ -1,0 +1,23 @@
+@model List<EnrolmentApiDto>
+@{ ViewData["Title"] = "My events"; }
+<div class="page-heading"><span class="eyebrow">YOUR RACE CALENDAR</span><h1>My events</h1><p>Your event entries, selected categories and enrolment status.</p></div>
+@if (Model.Count == 0)
+{
+    <div class="empty-state"><div class="empty-icon">🎟️</div><h3>You have not enrolled in an event yet</h3><p>Find an event and select a category to create your first entry.</p><a class="btn btn-accent" asp-action="Index">Explore events</a></div>
+}
+else
+{
+    <div class="content-card table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Event</th><th>Event date</th><th>Selected category</th><th>Enrolled on</th><th>Status</th></tr></thead><tbody>
+    @foreach (var entry in Model)
+    {
+        var confirmed = string.Equals(entry.Status, "Confirmed", StringComparison.OrdinalIgnoreCase);
+        <tr>
+            <td class="fw-semibold">@entry.EventName</td>
+            <td>@entry.EventDate.ToString("dd MMM yyyy")</td>
+            <td>@entry.CategoryName</td>
+            <td>@entry.EntryDate.ToString("dd MMM yyyy")</td>
+            <td><span class="status-pill @(confirmed ? "status-confirmed" : "status-pending")">@(confirmed ? "Confirmed" : "Pending")</span></td>
+        </tr>
+    }
+    </tbody></table></div>
+}

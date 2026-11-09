@@ -1,0 +1,18 @@
+@model ProfileFormViewModel
+@{ ViewData["Title"] = "My profile"; }
+<div class="page-heading"><span class="eyebrow">PARTICIPANT ACCOUNT</span><h1>My profile</h1><p>Keep your contact information and profile picture up to date.</p></div>
+<div class="form-panel profile-panel">
+    <div class="profile-picture-wrap">
+        @if (!string.IsNullOrWhiteSpace(Model.ProfilePictureUrl)) { <img src="@Model.ProfilePictureUrl" alt="Your profile picture" class="profile-picture"/> } else { <div class="profile-picture profile-placeholder">@(string.IsNullOrWhiteSpace(Model.Name) ? "RD" : Model.Name.Substring(0, 1).ToUpperInvariant())</div> }
+        <div><strong>@Model.Name</strong><div class="text-muted small">@Model.Email · @Model.Role</div></div>
+    </div>
+    <form asp-action="Profile" method="post" enctype="multipart/form-data">
+        
+        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+        <div class="mb-3"><label asp-for="Name" class="form-label"></label><input asp-for="Name" class="form-control"/><span asp-validation-for="Name" class="text-danger"></span></div>
+        <div class="mb-3"><label asp-for="ContactDetails" class="form-label"></label><input asp-for="ContactDetails" class="form-control"/><span asp-validation-for="ContactDetails" class="text-danger"></span></div>
+        <div class="mb-4"><label asp-for="ProfilePicture" class="form-label"></label><input asp-for="ProfilePicture" type="file" class="form-control" accept="image/png,image/jpeg,image/webp"/><div class="form-text">Images are uploaded to Azure Blob Storage through the Part 2 API.</div></div>
+        <button type="submit" class="btn btn-accent">Save profile</button>
+    </form>
+</div>
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }

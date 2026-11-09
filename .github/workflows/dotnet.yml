@@ -1,0 +1,59 @@
+name: RaceDay Part 3 CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out the code
+        uses: actions/checkout@v4
+
+      - name: Validate repository structure
+        shell: bash
+        run: |
+          set -e
+          for path in \
+            README.md \
+            RaceDay.sln \
+            Dockerfile \
+            docker-compose.yml \
+            RaceDay.Api/RaceDay.Api.csproj \
+            RaceDay.Api/Program.cs \
+            RaceDay.Api/Controllers \
+            RaceDay.Api/Models \
+            RaceDay.Api/Data \
+            RaceDay.Api/Dtos \
+            RaceDay.Mvc/RaceDay.Mvc.csproj \
+            RaceDay.Mvc/Program.cs \
+            RaceDay.Mvc/Controllers \
+            RaceDay.Mvc/Views \
+            RaceDay.Mvc/Services/RaceDayApiClient.cs \
+            RaceDay.Tests/RaceDay.Tests.csproj \
+            .github/workflows/dotnet.yml
+          do
+            test -e "$path" || { echo "Missing required path: $path"; exit 1; }
+            echo "Found: $path"
+          done
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore solution
+        run: dotnet restore RaceDay.sln
+
+      - name: Build API, MVC and tests
+        run: dotnet build RaceDay.sln --configuration Release --no-restore
+
+      - name: Run API tests
+        run: dotnet test RaceDay.sln --configuration Release --no-build --verbosity normal
+
+      - name: Check Docker Compose configuration
+        run: |
+          cp .env.example .env
+          docker compose config --quiet

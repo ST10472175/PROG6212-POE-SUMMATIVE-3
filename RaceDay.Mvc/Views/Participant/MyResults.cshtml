@@ -1,0 +1,13 @@
+@model List<ResultApiDto>
+@{ ViewData["Title"] = "My results"; }
+<div class="page-heading"><span class="eyebrow">YOUR FINISH-LINE HISTORY</span><h1>My results</h1><p>Your published finish times and finishing positions across completed events.</p></div>
+@if (Model.Count == 0)
+{
+    <div class="empty-state"><div class="empty-icon">🏆</div><h3>No results recorded yet</h3><p>Once an organiser publishes your result after an event, it will appear here.</p><a class="btn btn-outline-primary" asp-action="Index">Find an event</a></div>
+}
+else
+{
+    <div class="content-card table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Event</th><th>Date</th><th>Category</th><th>Finish time</th><th>Position</th></tr></thead><tbody>
+    @foreach (var result in Model.OrderByDescending(r => r.EventDate)) { <tr><td class="fw-semibold">@result.EventName</td><td>@result.EventDate.ToString("dd MMM yyyy")</td><td>@(string.IsNullOrWhiteSpace(result.CategoryName) ? "—" : result.CategoryName)</td><td class="font-monospace">@result.FinishTime</td><td><span class="position-chip">#@result.PositionNumber</span><span class="small text-muted ms-2">of @result.TotalParticipants</span></td></tr> }
+    </tbody></table></div>
+}

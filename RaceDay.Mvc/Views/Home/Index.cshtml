@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Welcome";
+}
+<section class="hero-panel">
+    <div class="hero-copy">
+        <span class="eyebrow">YOUR NEXT FINISH LINE STARTS HERE</span>
+        <h1>Make every race day <span>count.</span></h1>
+        <p>Discover running, walking and cycling events. Organise your event, welcome participants and celebrate every finish.</p>
+        <div class="d-flex flex-wrap gap-2 mt-4">
+            <a class="btn btn-accent btn-lg" asp-controller="Account" asp-action="Register">Get started</a>
+            <a class="btn btn-outline-light btn-lg" asp-controller="Account" asp-action="Login">Sign in</a>
+        </div>
+    </div>
+    <div class="hero-stat-card">
+        <div class="hero-icon">🏁</div>
+        <div class="display-6 fw-bold">RaceDay</div>
+        <p class="mb-0">One place for events, entries and results.</p>
+    </div>
+</section>
+<section class="row g-3 mt-4">
+    <div class="col-md-4"><div class="feature-card"><span class="feature-icon">🏃</span><h3>Find your event</h3><p>Explore events, compare categories and enrol in the race that suits you.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><span class="feature-icon">📋</span><h3>Manage with ease</h3><p>Organisers can create events, manage categories and keep track of enrolments.</p></div></div>
+    <div class="col-md-4"><div class="feature-card"><span class="feature-icon">🏆</span><h3>Track your results</h3><p>View your event history, finish times and positions from your participant profile.</p></div></div>
+</section>

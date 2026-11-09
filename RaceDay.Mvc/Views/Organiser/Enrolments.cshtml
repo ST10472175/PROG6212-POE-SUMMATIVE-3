@@ -1,0 +1,27 @@
+@model List<EnrolmentApiDto>
+@{ EventApiDto ev = ViewBag.Event as EventApiDto; ViewData["Title"] = "Event enrolments"; }
+<div class="page-heading"><span class="eyebrow">PARTICIPANT ENTRIES</span><h1>@ev?.EventName</h1><p>All participants enrolled in this event and their selected categories.</p></div>
+<div class="row g-3 mb-3"><div class="col-md-4"><div class="metric-card"><span>Total enrolments</span><strong>@Model.Count</strong></div></div><div class="col-md-4"><div class="metric-card"><span>Event date</span><strong class="metric-date">@ev?.EventDate.ToString("dd MMM yyyy")</strong></div></div></div>
+<div class="content-card table-responsive"><table class="table align-middle mb-0"><thead><tr><th>Participant</th><th>Selected category</th><th>Enrolled on</th><th>Status</th></tr></thead><tbody>
+@if (Model.Count == 0) { <tr><td colspan="4" class="text-muted p-4">There are no participants enrolled yet.</td></tr> }
+@foreach (var entry in Model)
+{
+    var confirmed = string.Equals(entry.Status, "Confirmed", StringComparison.OrdinalIgnoreCase);
+    <tr>
+        <td class="fw-semibold">@entry.ParticipantName</td>
+        <td>@entry.CategoryName</td>
+        <td>@entry.EntryDate.ToString("dd MMM yyyy")</td>
+        <td>
+            <div class="d-flex flex-wrap align-items-center gap-2">
+                <span class="status-pill @(confirmed ? "status-confirmed" : "status-pending")">@(confirmed ? "Confirmed" : "Pending")</span>
+                <form asp-action="UpdateEnrolmentStatus" method="post">
+                    <input type="hidden" name="eventId" value="@entry.EventId" />
+                    <input type="hidden" name="entryId" value="@entry.EntryId" />
+                    <input type="hidden" name="status" value="@(confirmed ? "Pending" : "Confirmed")" />
+                    <button type="submit" class="btn btn-sm @(confirmed ? "btn-outline-warning" : "btn-outline-success")">@(confirmed ? "Set pending" : "Confirm")</button>
+                </form>
+            </div>
+        </td>
+    </tr>
+}
+</tbody></table></div><a asp-action="Events" class="text-link d-inline-block mt-3">← Back to my events</a>

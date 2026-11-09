@@ -1,0 +1,25 @@
+@model ParticipantEventDetailsViewModel
+@{ ViewData["Title"] = Model.Event.EventName; }
+<div class="event-detail-hero">
+    @if (!string.IsNullOrWhiteSpace(Model.Event.BannerImageUrl)) { <img src="@Model.Event.BannerImageUrl" alt="Banner for @Model.Event.EventName" /> } else { <div class="banner-placeholder detail-placeholder">🏁 <span>RACEDAY EVENT</span></div> }
+    <div class="event-detail-copy"><span class="type-pill">@Model.Event.EventType · @Model.Event.Distance.ToString("0.##") km</span><h1>@Model.Event.EventName</h1><p>@Model.Event.Description</p><div class="detail-meta"><span>📅 @Model.Event.EventDate.ToString("dddd, dd MMMM yyyy · HH:mm")</span><span>📍 @Model.Event.Location</span><span>Organiser: @Model.Event.OrganiserName</span></div></div>
+</div>
+<div class="section-heading mt-4"><div><h2>Choose your category</h2><p>Select the category you want to enter for this event.</p></div></div>
+@if (Model.AlreadyEnrolled)
+{
+    <div class="alert alert-success">You are already enrolled in this event. Your entry is available in <a asp-action="MyEvents">My events</a>.</div>
+}
+else if (Model.Categories.Count == 0)
+{
+    <div class="alert alert-info">The organiser has not added any categories yet. Please check back later.</div>
+}
+else
+{
+    <div class="row g-3">
+    @foreach (var category in Model.Categories)
+    {
+        <div class="col-md-6 col-lg-4"><div class="category-card"><div class="category-icon">◉</div><h3>@category.CategoryName</h3><form asp-action="Enrol" method="post"><input type="hidden" name="eventId" value="@Model.Event.EventId"/><input type="hidden" name="categoryId" value="@category.CategoryId"/><button type="submit" class="btn btn-accent w-100">Enrol in this category</button></form></div></div>
+    }
+    </div>
+}
+<a asp-action="Index" class="text-link d-inline-block mt-4">← Back to events</a>

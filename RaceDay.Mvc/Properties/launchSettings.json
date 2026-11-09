@@ -1,0 +1,15 @@
+{
+  "profiles": {
+    "RaceDay.Mvc": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "",
+      "applicationUrl": "http://localhost:5081",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "Api__BaseUrl": "http://localhost:5080/"
+      }
+    }
+  }
+}
