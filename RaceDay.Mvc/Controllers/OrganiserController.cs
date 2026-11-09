@@ -314,7 +314,7 @@ namespace RaceDay.Mvc.Controllers
                 return RedirectToAction(nameof(Events));
             }
         }
-
+        //records a participant's results after the event has concluded.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> CaptureResult(int eventId, EventResultsViewModel model)
