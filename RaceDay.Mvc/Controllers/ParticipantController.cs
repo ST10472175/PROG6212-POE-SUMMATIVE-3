@@ -6,6 +6,8 @@ using RaceDay.Mvc.Services;
 
 namespace RaceDay.Mvc.Controllers
 {
+    //Handles participant actions such as viewing events, enrolling,
+    //checking results, and managing profile information
     [Authorize(Roles = "Participant")]
     public sealed class ParticipantController : Controller
     {
