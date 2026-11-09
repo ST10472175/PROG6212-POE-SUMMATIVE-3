@@ -29,3 +29,13 @@
 - [ ] Add the GitHub repository link to ARC.
 - [ ] Record the unlisted YouTube demonstration covering the full running application, MVC/API structure, Blob Storage and Docker setup.
 - [ ] Replace the YouTube URL placeholder in README with the actual unlisted video URL.
+
+## Final verification
+
+- [ ] Confirm that `README.md` matches the current project structure.
+- [ ] Check that `.env.example` contains all required configuration keys and no real secrets.
+- [ ] Verify that no connection strings, passwords, API keys or other secrets are committed.
+- [ ] Run the automated test suite and confirm that all tests pass.
+- [ ] Confirm that the latest changes have been committed and pushed to the `main` branch.
+- [ ] Open the GitHub repository in a browser and verify that the submitted files are visible.
+- [ ] Test the unlisted YouTube link and confirm that the video is accessible.
