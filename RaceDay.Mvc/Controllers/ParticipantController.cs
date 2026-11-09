@@ -58,6 +58,8 @@ namespace RaceDay.Mvc.Controllers
             }
         }
 
+        //loads the selected event, its available categories,
+        //and checks whether the participant has already enrolled
         [HttpGet]
         public async Task<IActionResult> Details(int id)
         {
