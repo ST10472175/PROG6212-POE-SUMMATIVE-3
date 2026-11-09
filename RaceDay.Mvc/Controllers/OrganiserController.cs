@@ -101,6 +101,7 @@ namespace RaceDay.Mvc.Controllers
             return RedirectToAction(nameof(Events));
         }
 
+        //retrieves the selected event details for editing
         [HttpGet]
         public async Task<IActionResult> EditEvent(int id)
         {
